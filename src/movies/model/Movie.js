@@ -5,7 +5,7 @@ const MovieSchema = new Schema({
   description: String,
   director: String,
   producer: String,
-  img: String,
+  image: String,
 });
 
 export default model('Movie', MovieSchema);
