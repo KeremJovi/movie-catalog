@@ -2,7 +2,7 @@ import app from './app';
 import 'express-async-errors';
 import AppError from './midlleware/error/AppError';
 
-app.listen(3333);
+app.listen(process.env.PORT || 3000);
 
 app.use((error, req, res, next) => {
   if (error instanceof AppError) {
