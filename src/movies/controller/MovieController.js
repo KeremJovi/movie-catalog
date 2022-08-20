@@ -1,12 +1,19 @@
+import 'express-async-errors';
+import Movie from '../model/Movie';
 import CreateMovieService from '../services/CreateMovieService';
+import PageSearchMovieServices from '../services/PageSearchMovieServices';
 
 class MovieController {
-  async store(req, res) {
-    const infoMovie = req.body;
+  async index(req, res) {
+    const info = await CreateMovieService.execute();
 
-    const createdMovie = await CreateMovieService.execute(infoMovie);
+    return res.json(info);
+  }
 
-    return res.json(createdMovie);
+  async show(req, res) {
+    const { page = 1, limit = 10 } = req.query;
+    const paginationMovie = await PageSearchMovieServices.execute(page, limit);
+    return res.json(paginationMovie);
   }
 }
 
