@@ -2,17 +2,16 @@ import express from 'express';
 import mongoose from 'mongoose';
 import routes from './routes';
 
+require('dotenv').config({ path: '.env' });
+
 class App {
   constructor() {
     this.server = express();
 
-    mongoose.connect(
-      'mongodb+srv://MovieHaku:9180@movie.vfb7qcg.mongodb.net/?retryWrites=true&w=majority',
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
+    mongoose.connect(process.env.MONGODB, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
     this.middlewares();
     this.routes();
