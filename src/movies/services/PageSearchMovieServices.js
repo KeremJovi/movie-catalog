@@ -4,9 +4,7 @@ import AppError from '../../midlleware/error/AppError';
 
 class PageSearchMovieServices {
   async execute(page, limit) {
-    console.log(page, limit);
     try {
-      console.log('dentro do try', page, limit);
       const posts = await Movie.find()
         .limit(limit * 1)
         .skip((page - 1) * limit)
